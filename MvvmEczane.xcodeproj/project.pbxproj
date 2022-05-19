@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350BE5D62835226900FAE968 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350BE5D52835226900FAE968 /* MapViewController.swift */; };
 		3532347A2833DEAF0053545C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353234792833DEAF0053545C /* AppDelegate.swift */; };
 		3532347C2833DEAF0053545C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3532347B2833DEAF0053545C /* SceneDelegate.swift */; };
 		3532347E2833DEAF0053545C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3532347D2833DEAF0053545C /* ViewController.swift */; };
@@ -16,6 +17,10 @@
 		353234912833DEB10053545C /* MvvmEczaneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353234902833DEB10053545C /* MvvmEczaneTests.swift */; };
 		3532349B2833DEB10053545C /* MvvmEczaneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3532349A2833DEB10053545C /* MvvmEczaneUITests.swift */; };
 		3532349D2833DEB10053545C /* MvvmEczaneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3532349C2833DEB10053545C /* MvvmEczaneUITestsLaunchTests.swift */; };
+		35EF8354283437FE0079401B /* EczaneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EF8353283437FE0079401B /* EczaneViewModel.swift */; };
+		35EF8357283438530079401B /* Eczane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EF8356283438530079401B /* Eczane.swift */; };
+		35EF8359283439180079401B /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EF8358283439180079401B /* Observable.swift */; };
+		35EF835F28344AEC0079401B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EF835E28344AEB0079401B /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		350BE5D52835226900FAE968 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		353234762833DEAF0053545C /* MvvmEczane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MvvmEczane.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		353234792833DEAF0053545C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3532347B2833DEAF0053545C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +55,10 @@
 		353234962833DEB10053545C /* MvvmEczaneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MvvmEczaneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3532349A2833DEB10053545C /* MvvmEczaneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MvvmEczaneUITests.swift; sourceTree = "<group>"; };
 		3532349C2833DEB10053545C /* MvvmEczaneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MvvmEczaneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		35EF8353283437FE0079401B /* EczaneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EczaneViewModel.swift; sourceTree = "<group>"; };
+		35EF8356283438530079401B /* Eczane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eczane.swift; sourceTree = "<group>"; };
+		35EF8358283439180079401B /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		35EF835E28344AEB0079401B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +109,8 @@
 		353234782833DEAF0053545C /* MvvmEczane */ = {
 			isa = PBXGroup;
 			children = (
+				35EF8355283438490079401B /* Model */,
+				35EF8352283437D40079401B /* ViewModel */,
 				353234792833DEAF0053545C /* AppDelegate.swift */,
 				3532347B2833DEAF0053545C /* SceneDelegate.swift */,
 				3532347D2833DEAF0053545C /* ViewController.swift */,
@@ -106,6 +118,9 @@
 				353234822833DEB10053545C /* Assets.xcassets */,
 				353234842833DEB10053545C /* LaunchScreen.storyboard */,
 				353234872833DEB10053545C /* Info.plist */,
+				35EF8358283439180079401B /* Observable.swift */,
+				35EF835E28344AEB0079401B /* DetailViewController.swift */,
+				350BE5D52835226900FAE968 /* MapViewController.swift */,
 			);
 			path = MvvmEczane;
 			sourceTree = "<group>";
@@ -125,6 +140,22 @@
 				3532349C2833DEB10053545C /* MvvmEczaneUITestsLaunchTests.swift */,
 			);
 			path = MvvmEczaneUITests;
+			sourceTree = "<group>";
+		};
+		35EF8352283437D40079401B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				35EF8353283437FE0079401B /* EczaneViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		35EF8355283438490079401B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35EF8356283438530079401B /* Eczane.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +289,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35EF8357283438530079401B /* Eczane.swift in Sources */,
 				3532347E2833DEAF0053545C /* ViewController.swift in Sources */,
 				3532347A2833DEAF0053545C /* AppDelegate.swift in Sources */,
+				35EF8354283437FE0079401B /* EczaneViewModel.swift in Sources */,
+				35EF8359283439180079401B /* Observable.swift in Sources */,
 				3532347C2833DEAF0053545C /* SceneDelegate.swift in Sources */,
+				35EF835F28344AEC0079401B /* DetailViewController.swift in Sources */,
+				350BE5D62835226900FAE968 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +473,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CZR85C5QBN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MvvmEczane/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -444,6 +481,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -464,6 +502,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CZR85C5QBN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MvvmEczane/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -471,6 +510,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

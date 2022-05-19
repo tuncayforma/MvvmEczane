@@ -7,49 +7,12 @@
 
 import UIKit
 
-
-//Oservable
-class Observable<T>{
-    var value:T?{
-        didSet{
-            listener.forEach{
-                $0(value)
-            }
-        }
-    }
-    init(_ value:T?){
-        self.value = value
-    }
-    private var listener:[((T?)->Void)] = []
+class ViewController: UIViewController, UITableViewDataSource ,UITableViewDelegate{
     
-    func bind(_ listener: @escaping(T?)->Void){
-        listener(value)
-        self.listener.append(listener)
-    }
-}
-
-//Model
-struct User:Codable{
-    let name:String
-}
-
-//ViewModel
-struct UserListViewModel{
-    var users : Observable<[UserTableViewCellModel]> = Observable([])
-}
-struct UserTableViewCellModel{
-    let name:String
-}
-
-
-
-//Controller
-
-
-
-class ViewController: UIViewController, UITableViewDataSource {
-    
-    
+    var chosenName = ""
+    var chosenAddress = ""
+    var chosenPhone = ""
+    var chosenLocation = ""
 
     private let tableView : UITableView = {
         let table = UITableView()
@@ -58,17 +21,17 @@ class ViewController: UIViewController, UITableViewDataSource {
         return table
     }()
     
-    private var viewModel = UserListViewModel()
-    
-    
+    private var viewModel = EczaneListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.dataSource = self
+        tableView.delegate = self
+        title = "Nöbetçi Eczane"
         
-        viewModel.users.bind{ [weak self]_ in
+        viewModel.eczaneler.bind{ [weak self]_ in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -77,30 +40,58 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
     //Table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.users.value?.count ?? 0
+        return viewModel.eczaneler.value?.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = viewModel.users.value?[indexPath.row].name
+        cell.textLabel?.text = (viewModel.eczaneler.value?[indexPath.row].name)! + " ECZANESİ"
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chosenName = (viewModel.eczaneler.value?[indexPath.row].name)! + " ECZANESİ"
+        chosenAddress = (viewModel.eczaneler.value?[indexPath.row].address)!
+        chosenPhone = (viewModel.eczaneler.value?[indexPath.row].phone)!
+        chosenLocation = (viewModel.eczaneler.value?[indexPath.row].loc)!
+        performSegue(withIdentifier: "goDetail", sender: nil)
+        
+    }
     
-    
-    func fetchData(){
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/users") else{
-            return
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goDetail"{
+            let destinationVC = segue.destination as! DetailViewController
+            destinationVC.selectedName = chosenName
+            destinationVC.selectedAddress = chosenAddress
+            destinationVC.selectedPhone = chosenPhone
+            destinationVC.selectedLocation = chosenLocation
         }
-        let task = URLSession.shared.dataTask(with: url) { (data, _, _) in
+    }
+    func fetchData(){
+        let headers = [
+          "content-type": "application/json",
+          "authorization": "apikey 4vt87Wjv7h2JoINagTFBy6:77epPNXelDzVLC3v4w2yMX"
+        ]
+
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.collectapi.com/health/dutyPharmacy?ilce=&il=Elazig")! as URL,
+                                                cachePolicy: .useProtocolCachePolicy,
+                                            timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             guard let data = data else {
                 return
             }
             do{
-                let userModels = try JSONDecoder().decode([User].self,from:data)
-                self.viewModel.users.value = userModels.compactMap({
-                    UserTableViewCellModel(name: $0.name)
+                
+                let userModels = try JSONDecoder().decode(EczaneResponse.self,from:data)
+                
+                self.viewModel.eczaneler.value = userModels.result.compactMap({
+                    EczaneTableCellViewModel(name: $0.name,dist: $0.dist, address: $0.address,phone: $0.phone,loc: $0.loc)
+                    
                 })
             }catch{
-                print("Hata")
+                print(error)
             }
         }
         task.resume()
